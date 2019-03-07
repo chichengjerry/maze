@@ -48,6 +48,8 @@ private:
 	int						nPolygon;
 	int						nPath;
 	HRESULT					_create_vertices();
+	ITEM*					items[MAZE_ITEM];
+	PLAYER*					player;
 
 public:
 	CELL					goal;
@@ -56,6 +58,10 @@ public:
 	BYTE					GetPositionCell(D3DXVECTOR3 &pos, int &x, int& y);
 	D3DXVECTOR3				GetCellPosition(int x, int y);
 	void					SetGoal(int x, int y);
+	void					SetItems(PLAYER* player);
+	BOOL					IsAtExit(PLAYER* player);
+
+	void					Update(PLAYER * player);
 };
 
 #endif // !__MAZE_H__

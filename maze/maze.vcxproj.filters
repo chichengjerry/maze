@@ -48,16 +48,10 @@
     <ClCompile Include="maths.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="meshfield.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="model.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="particle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="perlin.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="polygon.cpp">
@@ -99,6 +93,9 @@
     <ClCompile Include="star.cpp">
       <Filter>ソース ファイル\game</Filter>
     </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.h">
@@ -122,16 +119,10 @@
     <ClInclude Include="maths.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="meshfield.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="model.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="particle.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="perlin.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="polygon.h">
@@ -183,6 +174,9 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="star.h">
+      <Filter>ソース ファイル\game</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
       <Filter>ソース ファイル\game</Filter>
     </ClInclude>
   </ItemGroup>

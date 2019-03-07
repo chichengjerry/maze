@@ -1,5 +1,6 @@
 #include "maze.h"
 #include "camera.h"
+#include "item.h"
 
 using namespace std;
 
@@ -265,7 +266,7 @@ bool MAZE2D::SetCell(int x, int y, BYTE value)
 
 MAZE::MAZE(int width, int height) : MAZE2D(width, height)
 {
-	this->goal = goal;
+	memset(&items, 0, sizeof(items));
 	GenerateMethodExtend();
 
 	D3D::LoadTexture(&pTexDirt, _T("data/TEXTURE/dirt.jpg"));
@@ -279,6 +280,10 @@ MAZE::~MAZE()
 	SAFE_RELEASE(pVtxBuffer);
 	SAFE_RELEASE(pTexHedge);
 	SAFE_RELEASE(pTexDirt);
+
+	for (int i = 0; i < MAZE_ITEM; i++) {
+		SAFE_DELETE(items[i]);
+	}
 }
 
 HRESULT MAZE::_create_vertices()
@@ -432,6 +437,11 @@ HRESULT MAZE::Draw(CAMERA* pCamera)
 		D3DCHECK(pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, i * NUM_VERTEX, NUM_POLYGON));
 	}
 
+
+	for (int i = 0; i < MAZE_ITEM; i++) {
+		if (items[i]) items[i]->Draw(pCamera);
+	}
+
 	return D3D_OK;
 }
 
@@ -454,10 +464,42 @@ D3DXVECTOR3 MAZE::GetCellPosition(int x, int y)
 {
 	FLOAT fx = MAZE_BLOCK_SIZE * ((x - (width + 1) / 2) + 0.5f);
 	FLOAT fz = MAZE_BLOCK_SIZE * ((y - (height + 1) / 2) + 0.5f);
+
 	return D3DXVECTOR3(fx, MAZE_BLOCK_HEIGHT * 0.5f, fz);
 }
 
 void MAZE::SetGoal(int x, int y)
 {
 	goal = { x, y };
+}
+
+void MAZE::SetItems(PLAYER * player)
+{
+	if (!player->guideVtx.empty()) {
+		int total = player->guideVtx.size();
+
+		for (int i = 0; i < MAZE_ITEM; i++) {
+			int x, y;
+			GetPositionCell(player->guideVtx[total * (i + 1) / (MAZE_ITEM + 2)], x, y);
+			items[i] = new ITEM(this, x, y);
+		}
+	}
+}
+
+BOOL MAZE::IsAtExit(PLAYER * player)
+{
+	FLOAT r = 96.0f * 96.0f * 0.25f;
+	D3DXVECTOR3 d = player->srt.pos - GetCellPosition(goal.x, goal.y);
+	return D3DXVec3LengthSq(&d) < r;
+}
+
+void MAZE::Update(PLAYER * player)
+{
+	for (int i = 0; i < MAZE_ITEM; i++) {
+		if (items[i]) items[i]->Update(player);
+	}
+
+	if (IsAtExit(player)) {
+		player->GameWin();
+	}
 }
