@@ -8,25 +8,21 @@
 
 using namespace std;
 
-class MAZE2D {
-public:
-	MAZE2D(int width, int height);
-	~MAZE2D();
-
-protected:
+struct MAZE2D {
 	int						width;
 	int						height;
-
-private:
 	bool					generated;
 	NODE*					pCell;
 	bool					findingPath;
+
 	void					_extend_wall(int x, int y, vector<CELL>& wall);
 	bool					_is_current_wall(int x, int y, vector<CELL>& wall);
 	void					_set_wall(int x, int y, vector<CELL>& wall);
 	void					_find_neighbours(NODE* neighbours[], NODE* current);
 
-public:
+	MAZE2D(int width, int height);
+	~MAZE2D();
+
 	void					GenerateMethodExtend();
 	void					FindPath(NODE* start, NODE* goal, vector<NODE*> &path);
 	BYTE					GetCellType(int x, int y);
@@ -35,24 +31,22 @@ public:
 	bool					SetCell(int x, int y, BYTE value);
 };
 
-class MAZE : public MAZE2D {
-public:
-	MAZE(int width, int height);
-	~MAZE();
+struct MAZE : public MAZE2D {
 
-private:
 	LPDIRECT3DVERTEXBUFFER9	pVtxBuffer;
-	LPDIRECT3DINDEXBUFFER9	pVtxIdxBuffer;
-	LPDIRECT3DTEXTURE9		pTexHedge;
-	LPDIRECT3DTEXTURE9		pTexDirt;
+	static LPDIRECT3DTEXTURE9
+							pTexHedge;
+	static LPDIRECT3DTEXTURE9
+							pTexDirt;
 	int						nPolygon;
 	int						nPath;
 	HRESULT					_create_vertices();
 	ITEM*					items[MAZE_ITEM];
 	PLAYER*					player;
-
-public:
 	CELL					goal;
+
+	MAZE(int width, int height);
+	~MAZE();
 	HRESULT					Draw(CAMERA* camera);
 	BYTE					GetPositionCell(D3DXVECTOR3 &pos);
 	BYTE					GetPositionCell(D3DXVECTOR3 &pos, int &x, int& y);
@@ -61,7 +55,7 @@ public:
 	void					SetItems(PLAYER* player);
 	BOOL					IsAtExit(PLAYER* player);
 
-	void					Update(PLAYER * player);
+	void					Update(PLAYER* player);
 };
 
 #endif // !__MAZE_H__

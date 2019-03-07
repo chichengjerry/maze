@@ -189,7 +189,7 @@ void MAZE2D::FindPath(NODE* start, NODE* goal, vector<NODE*> &path)
 		// Use manhattan distance
 		current->f_score = NODE::_manhattan_distance(start, goal);
 	}
-	int cnt = 10;
+	int cnt = 16;
 
 	do {
 		if (!openset.empty()) {
@@ -264,13 +264,16 @@ bool MAZE2D::SetCell(int x, int y, BYTE value)
 	return true;
 }
 
+LPDIRECT3DTEXTURE9 MAZE::pTexDirt = NULL;
+LPDIRECT3DTEXTURE9 MAZE::pTexHedge = NULL;
+
 MAZE::MAZE(int width, int height) : MAZE2D(width, height)
 {
 	memset(&items, 0, sizeof(items));
 	GenerateMethodExtend();
 
-	D3D::LoadTexture(&pTexDirt, _T("data/TEXTURE/dirt.jpg"));
 	D3D::LoadTexture(&pTexHedge, _T("data/TEXTURE/hedge.jpg"));
+	D3D::LoadTexture(&pTexDirt, _T("data/TEXTURE/dirt.jpg"));
 
 	_create_vertices();
 }
@@ -305,7 +308,7 @@ HRESULT MAZE::_create_vertices()
 	// index list.
 	vector<DWORD> indicies;
 
-	int nTop = 0;
+	nPath = 0;
 
 	// Generate path index list.
 	for (int y = 0; y < vh; y++) {
@@ -429,14 +432,12 @@ HRESULT MAZE::Draw(CAMERA* pCamera)
 	for (int i = 0; i < nPolygon; i++) {
 		if (i < nPath) {
 			D3DCHECK(pDevice->SetTexture(0, pTexDirt));
-		}
-		else {
+		} else {
 			D3DCHECK(pDevice->SetTexture(0, pTexHedge));
 		}
 	
 		D3DCHECK(pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, i * NUM_VERTEX, NUM_POLYGON));
 	}
-
 
 	for (int i = 0; i < MAZE_ITEM; i++) {
 		if (items[i]) items[i]->Draw(pCamera);

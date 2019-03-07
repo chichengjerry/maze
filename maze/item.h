@@ -10,6 +10,7 @@
 typedef struct ITEM{
 	static LPDIRECT3DTEXTURE9	pTex;
 	static int					cnt;
+	UINT						id;
 	MAZE*						pMaze;
 	BOOL						picked;
 	EMITTER*					glow;
@@ -17,6 +18,7 @@ typedef struct ITEM{
 	FLOAT						fGlowTime;
 	FLOAT						fSize;
 	SRT							srt;
+	D3DLIGHT9					light;
 
 	ITEM(MAZE * maze, int x, int y);
 	~ITEM();
