@@ -284,7 +284,7 @@ MAZE::~MAZE()
 	SAFE_RELEASE(pTexHedge);
 	SAFE_RELEASE(pTexDirt);
 
-	for (int i = 0; i < MAZE_ITEM; i++) {
+	for (int i = 0; i < MAZE_STAR_NUM; i++) {
 		SAFE_DELETE(items[i]);
 	}
 }
@@ -439,7 +439,7 @@ HRESULT MAZE::Draw(CAMERA* pCamera)
 		D3DCHECK(pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, i * NUM_VERTEX, NUM_POLYGON));
 	}
 
-	for (int i = 0; i < MAZE_ITEM; i++) {
+	for (int i = 0; i < MAZE_STAR_NUM; i++) {
 		if (items[i]) items[i]->Draw(pCamera);
 	}
 
@@ -479,9 +479,9 @@ void MAZE::SetItems(PLAYER * player)
 	if (!player->guideVtx.empty()) {
 		int total = player->guideVtx.size();
 
-		for (int i = 0; i < MAZE_ITEM; i++) {
+		for (int i = 0; i < MAZE_STAR_NUM; i++) {
 			int x, y;
-			GetPositionCell(player->guideVtx[total * (i + 1) / (MAZE_ITEM + 2)], x, y);
+			GetPositionCell(player->guideVtx[total * (i + 1) / (MAZE_STAR_NUM + 2)], x, y);
 			items[i] = new ITEM(this, x, y);
 		}
 	}
@@ -496,7 +496,7 @@ BOOL MAZE::IsAtExit(PLAYER * player)
 
 void MAZE::Update(PLAYER * player)
 {
-	for (int i = 0; i < MAZE_ITEM; i++) {
+	for (int i = 0; i < MAZE_STAR_NUM; i++) {
 		if (items[i]) items[i]->Update(player);
 	}
 

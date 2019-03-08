@@ -41,7 +41,7 @@ struct MAZE : public MAZE2D {
 	int						nPolygon;
 	int						nPath;
 	HRESULT					_create_vertices();
-	ITEM*					items[MAZE_ITEM];
+	ITEM*					items[MAZE_STAR_NUM];
 	PLAYER*					player;
 	CELL					goal;
 
