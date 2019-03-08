@@ -44,6 +44,7 @@ struct MAZE : public MAZE2D {
 	ITEM*					items[MAZE_STAR_NUM];
 	PLAYER*					player;
 	CELL					goal;
+	PORTAL*					portal[2];
 
 	MAZE(int width, int height);
 	~MAZE();

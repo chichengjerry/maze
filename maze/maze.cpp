@@ -1,6 +1,7 @@
 #include "maze.h"
 #include "camera.h"
 #include "item.h"
+#include "portal.h"
 
 using namespace std;
 
@@ -269,12 +270,13 @@ LPDIRECT3DTEXTURE9 MAZE::pTexHedge = NULL;
 
 MAZE::MAZE(int width, int height) : MAZE2D(width, height)
 {
-	memset(&items, 0, sizeof(items));
-	GenerateMethodExtend();
+	ZeroMemory(portal, sizeof(portal));
+	ZeroMemory(items, sizeof(items));
 
 	D3D::LoadTexture(&pTexHedge, _T("data/TEXTURE/hedge.jpg"));
 	D3D::LoadTexture(&pTexDirt, _T("data/TEXTURE/dirt.jpg"));
 
+	GenerateMethodExtend();
 	_create_vertices();
 }
 
@@ -286,6 +288,10 @@ MAZE::~MAZE()
 
 	for (int i = 0; i < MAZE_STAR_NUM; i++) {
 		SAFE_DELETE(items[i]);
+	}
+
+	for (int i = 0; i < 2; i++) {
+		SAFE_DELETE(portal[i]);
 	}
 }
 
@@ -443,6 +449,10 @@ HRESULT MAZE::Draw(CAMERA* pCamera)
 		if (items[i]) items[i]->Draw(pCamera);
 	}
 
+	for (int i = 0; i < 2; i++) {
+		if (portal[i]) portal[i]->Draw(pCamera);
+	}
+
 	return D3D_OK;
 }
 
@@ -472,6 +482,7 @@ D3DXVECTOR3 MAZE::GetCellPosition(int x, int y)
 void MAZE::SetGoal(int x, int y)
 {
 	goal = { x, y };
+	portal[1] = new PORTAL(this, x, y);
 }
 
 void MAZE::SetItems(PLAYER * player)
@@ -502,5 +513,8 @@ void MAZE::Update(PLAYER * player)
 
 	if (IsAtExit(player)) {
 		player->GameWin();
+	}
+	for (int i = 0; i < 2; i++) {
+		if (portal[i]) portal[i]->Update();
 	}
 }
