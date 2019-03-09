@@ -456,14 +456,14 @@ HRESULT MAZE::Draw(CAMERA* pCamera)
 	return D3D_OK;
 }
 
-BYTE MAZE::GetPositionCell(D3DXVECTOR3 & pos)
+BYTE MAZE::GetPositionCell(D3DXVECTOR3 pos)
 {
 	int x, y;
 
 	return GetPositionCell(pos, x, y);
 }
 
-BYTE MAZE::GetPositionCell(D3DXVECTOR3 & pos, int & x, int & y)
+BYTE MAZE::GetPositionCell(D3DXVECTOR3 pos, int & x, int & y)
 {
 	x = (int)floorf(pos.x / MAZE_BLOCK_SIZE) + (width + 1) / 2;
 	y = (int)floorf(pos.z / MAZE_BLOCK_SIZE) + (height + 1) / 2;

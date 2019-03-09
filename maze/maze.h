@@ -49,8 +49,8 @@ struct MAZE : public MAZE2D {
 	MAZE(int width, int height);
 	~MAZE();
 	HRESULT					Draw(CAMERA* camera);
-	BYTE					GetPositionCell(D3DXVECTOR3 &pos);
-	BYTE					GetPositionCell(D3DXVECTOR3 &pos, int &x, int& y);
+	BYTE					GetPositionCell(D3DXVECTOR3 pos);
+	BYTE					GetPositionCell(D3DXVECTOR3 pos, int &x, int& y);
 	D3DXVECTOR3				GetCellPosition(int x, int y);
 	void					SetGoal(int x, int y);
 	void					SetItems(PLAYER* player);
