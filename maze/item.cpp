@@ -41,6 +41,9 @@ ITEM::ITEM(MAZE * maze, int x, int y)
 
 ITEM::~ITEM()
 {
+	LPDIRECT3DDEVICE9 pDevice = D3D::GetDevice();
+	pDevice->LightEnable(ITEM_LIGHT_OFFSET + id, FALSE);
+
 	SAFE_DELETE(glow);
 	SAFE_DELETE(mdl);
 	if (!--cnt) {
