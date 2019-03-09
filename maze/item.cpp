@@ -19,7 +19,7 @@ ITEM::ITEM(MAZE * maze, int x, int y)
 	picked = FALSE;
 	srt = SRT(pMaze->GetCellPosition(x, y));
 	fGlowTime = 0.0f;
-	fSize = 64.0f;
+	fSize = 96.0f;
 
 	glow = new EMITTER(pTex, 1, srt.pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f), fSize);
 

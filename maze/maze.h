@@ -20,7 +20,7 @@ struct MAZE2D {
 	void					_set_wall(int x, int y, vector<CELL>& wall);
 	void					_find_neighbours(NODE* neighbours[], NODE* current);
 
-	MAZE2D(int width, int height);
+	MAZE2D(int width, int height, unsigned int r_seed);
 	~MAZE2D();
 
 	void					GenerateMethodExtend();
@@ -46,7 +46,7 @@ struct MAZE : public MAZE2D {
 	CELL					goal;
 	PORTAL*					portal[2];
 
-	MAZE(int width, int height);
+	MAZE(int width, int height, UINT seed);
 	~MAZE();
 	HRESULT					Draw(CAMERA* camera);
 	BYTE					GetPositionCell(D3DXVECTOR3 pos);

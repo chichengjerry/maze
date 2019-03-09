@@ -18,12 +18,15 @@ void shuffle_vector(vector<T>& vec) {
 //
 // Constructor
 //
-MAZE2D::MAZE2D(int w, int h)
+MAZE2D::MAZE2D(int w, int h, unsigned int r_seed)
 {
 	width = w;
 	height = h;
 	generated = false;
 	findingPath = false;
+	
+	if (r_seed == 0) r_seed = timeGetTime();
+	srand(r_seed);
 
 	pCell = new NODE[width * height];
 }
@@ -268,7 +271,7 @@ bool MAZE2D::SetCell(int x, int y, BYTE value)
 LPDIRECT3DTEXTURE9 MAZE::pTexDirt = NULL;
 LPDIRECT3DTEXTURE9 MAZE::pTexHedge = NULL;
 
-MAZE::MAZE(int width, int height) : MAZE2D(width, height)
+MAZE::MAZE(int width, int height, UINT seed) : MAZE2D(width, height, seed)
 {
 	ZeroMemory(portal, sizeof(portal));
 	ZeroMemory(items, sizeof(items));
