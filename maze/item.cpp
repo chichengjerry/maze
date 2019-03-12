@@ -3,6 +3,7 @@
 #include "game.h"
 #include "maze.h"
 #include "player.h"
+#include "sound.h"
 
 LPDIRECT3DTEXTURE9 ITEM::pTex = NULL;
 int ITEM::cnt = 0;
@@ -19,9 +20,9 @@ ITEM::ITEM(MAZE * maze, int x, int y)
 	picked = FALSE;
 	srt = SRT(pMaze->GetCellPosition(x, y));
 	fGlowTime = 0.0f;
-	fSize = 96.0f;
+	fSize = 128.0f;
 
-	glow = new EMITTER(pTex, 1, srt.pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f), fSize);
+	glow = new EMITTER(pTex, 1, srt.pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f), fSize / 2);
 
 	mdl = new MODEL(_T("data/MODEL/star.x"), NULL);
 	mdl->srt = srt;
@@ -69,7 +70,7 @@ void ITEM::Update(PLAYER* player)
 	if (!picked && D3DXVec3LengthSq(&d) < fSize * fSize * 0.25f) {
 		LPDIRECT3DDEVICE9 pDevice = D3D::GetDevice();
 		pDevice->LightEnable(ITEM_LIGHT_OFFSET + id, FALSE);
-
+		DSOUND::Play(SOUND_PICKUP);
 		player->AddStar();
 		picked = TRUE;
 	}

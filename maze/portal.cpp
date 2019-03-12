@@ -10,18 +10,17 @@ PORTAL::PORTAL(MAZE * pMaze, int x, int y)
 
 	maze = pMaze;
 	pos = maze->GetCellPosition(x, y);
-	pos.y = 0.25f * MAZE_BLOCK_HEIGHT;
 
 	dots = new EMITTER(pTex, GM_MAX_PARTICLES, pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXCOLOR(0.0f, 0.5f, 0.125f, 1.0f), 5.0f);
 
 	for (int i = 0; i < dots->nParticlesCount; ++i) {
 		FLOAT r = 32.0f + GET_RANDOM(0, 16);	// range [50.0, 100.0]
+		FLOAT h = GET_RANDOM(0, MAZE_BLOCK_HEIGHT);
 		FLOAT theta = D3DXToRadian(GET_RANDOM(1, 360));
 
 		dots->particles[i].pos.x += r * cosf(theta);
-		dots->particles[i].pos.y = 0.25f * MAZE_BLOCK_HEIGHT;
+		dots->particles[i].pos.y = h;
 		dots->particles[i].pos.z += r * sinf(theta);
-
 	}
 }
 
@@ -41,8 +40,9 @@ void PORTAL::Update()
 		vec = dots->particles[i].pos - dots->pos;
 		D3DXMatrixRotationY(&mtx, D3DXToRadian(d) * D3D::fAnimationRate);
 		D3DXVec3Transform(&temp, &vec, &mtx);
-		vec = D3DXVECTOR3(temp.x, 0.0f, temp.z);
+		vec = D3DXVECTOR3(temp.x, temp.y, temp.z);
 		dots->particles[i].pos = dots->pos + vec;
+
 	}
 }
 

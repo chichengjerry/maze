@@ -34,7 +34,6 @@
     <ClCompile Include="node.cpp" />
     <ClCompile Include="particle.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="polygon.cpp" />
     <ClCompile Include="portal.cpp" />
     <ClCompile Include="sky.cpp" />
     <ClCompile Include="sound.cpp" />
@@ -63,7 +62,6 @@
     <ClInclude Include="node.h" />
     <ClInclude Include="particle.h" />
     <ClInclude Include="player.h" />
-    <ClInclude Include="polygon.h" />
     <ClInclude Include="portal.h" />
     <ClInclude Include="sky.h" />
     <ClInclude Include="sound.h" />

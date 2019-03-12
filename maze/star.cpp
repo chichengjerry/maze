@@ -78,14 +78,15 @@ void STAR::Update()
 						ran = GET_RANDOM(1, 10);
 					}
 				}
-				else
+				else {
 					unlit = true;
-
+				}
 			}
-			else
-				unlit = true;
+			else {
+				emitter->particles[i].bAlive = FALSE;
+			}
 
-			if(unlit &&emitter->particles[i].bAlive){
+			if(unlit && emitter->particles[i].bAlive){
 				emitter->particles[i].scl -= 0.25f * D3D::fAnimationRate;
 				emitter->particles[i].pos.y = GR_FAR_Z * 0.25f;
 				if (player->pGame->gameLevel == LEVEL_HARD) {

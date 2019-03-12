@@ -54,9 +54,6 @@
     <ClCompile Include="particle.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="polygon.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ui_digits.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
@@ -126,9 +123,6 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="particle.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="polygon.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="sound.h">
