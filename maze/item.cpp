@@ -31,6 +31,7 @@ ITEM::ITEM(MAZE * maze, int x, int y)
 	light.Type = D3DLIGHT_POINT;
 	light.Diffuse = D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f);
 	light.Position = srt.pos;
+	light.Position.y = 0.25f * MAZE_BLOCK_HEIGHT;
 	light.Range = 128.0f;
 	
 	LPDIRECT3DDEVICE9 pDevice = D3D::GetDevice();

@@ -96,6 +96,9 @@
     <ClCompile Include="portal.cpp">
       <Filter>ソース ファイル\game</Filter>
     </ClCompile>
+    <ClCompile Include="trap.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.h">
@@ -177,6 +180,9 @@
       <Filter>ソース ファイル\game</Filter>
     </ClInclude>
     <ClInclude Include="portal.h">
+      <Filter>ソース ファイル\game</Filter>
+    </ClInclude>
+    <ClInclude Include="trap.h">
       <Filter>ソース ファイル\game</Filter>
     </ClInclude>
   </ItemGroup>

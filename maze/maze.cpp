@@ -2,6 +2,7 @@
 #include "camera.h"
 #include "item.h"
 #include "portal.h"
+#include "trap.h"
 
 using namespace std;
 
@@ -273,8 +274,9 @@ LPDIRECT3DTEXTURE9 MAZE::pTexHedge = NULL;
 
 MAZE::MAZE(int width, int height, UINT seed) : MAZE2D(width, height, seed)
 {
-	ZeroMemory(portal, sizeof(portal));
-	ZeroMemory(items, sizeof(items));
+	ZeroMemory(&portal, sizeof(portal));
+	ZeroMemory(&items, sizeof(items));
+	ZeroMemory(&traps, sizeof(traps));
 
 	D3D::LoadTexture(&pTexHedge, _T("data/TEXTURE/hedge.jpg"));
 	D3D::LoadTexture(&pTexDirt, _T("data/TEXTURE/dirt.jpg"));
@@ -295,6 +297,10 @@ MAZE::~MAZE()
 
 	for (int i = 0; i < 2; i++) {
 		SAFE_DELETE(portal[i]);
+	}
+
+	for (int i = 0; i < MAZE_TRAP_NUM; i++) {
+		SAFE_DELETE(traps[i]);
 	}
 }
 
@@ -456,6 +462,10 @@ HRESULT MAZE::Draw(CAMERA* pCamera)
 		if (portal[i]) portal[i]->Draw(pCamera);
 	}
 
+	for (int i = 0; i < MAZE_TRAP_NUM; i++) {
+		if (traps[i]) traps[i]->Draw();
+	}
+
 	return D3D_OK;
 }
 
@@ -482,10 +492,43 @@ D3DXVECTOR3 MAZE::GetCellPosition(int x, int y)
 	return D3DXVECTOR3(fx, MAZE_BLOCK_HEIGHT * 0.5f, fz);
 }
 
+BOOL MAZE::HasTrap(int x, int y, TRAP* &pOut)
+{
+	for (int i = 0; i < MAZE_TRAP_NUM; ++i) {
+		if (traps[i] && traps[i]->tx == x && traps[i]->ty == y) {
+			pOut = traps[i];
+			return TRUE;
+		}
+	}
+	return FALSE;
+}
+
 void MAZE::SetGoal(int x, int y)
 {
 	goal = { x, y };
 	portal[1] = new PORTAL(this, x, y);
+}
+
+void MAZE::SetTraps()
+{
+	// Test traps
+	//	for (int i = 0; i < 8; ++i) {
+	//		for (int j = 0; j < 8; ++j) {
+	//			traps[i * 8 + j] = new TRAP(this, 2 * i + 3, 2 * j + 3);
+	//		}
+	//	}
+
+	int i = 0;
+	while (i < MAZE_TRAP_NUM) {
+		int x, y;
+		x = 2 * GET_RANDOM(1, MAZE_SIZE - 3) + 1;
+		y = 2 * GET_RANDOM(1, MAZE_SIZE - 3) + 1;
+		TRAP* trap;
+		if (!HasTrap(x, y, trap)) {
+			traps[i++] = new TRAP(this, x, y);
+		}
+	}
+
 }
 
 void MAZE::SetItems(PLAYER * player)
@@ -503,8 +546,9 @@ void MAZE::SetItems(PLAYER * player)
 
 BOOL MAZE::IsAtExit(PLAYER * player)
 {
-	FLOAT r = 96.0f * 96.0f * 0.25f;
+	FLOAT r = MAZE_BLOCK_SIZE * MAZE_BLOCK_SIZE * 0.25f;
 	D3DXVECTOR3 d = player->srt.pos - GetCellPosition(goal.x, goal.y);
+	d.y = 0.0f;
 	return D3DXVec3LengthSq(&d) < r;
 }
 
@@ -519,5 +563,8 @@ void MAZE::Update(PLAYER * player)
 	}
 	for (int i = 0; i < 2; i++) {
 		if (portal[i]) portal[i]->Update();
+	}
+	for (int i = 0; i < MAZE_TRAP_NUM; i++) {
+		if (traps[i]) traps[i]->Update();
 	}
 }

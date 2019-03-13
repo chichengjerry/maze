@@ -45,6 +45,7 @@ struct MAZE : public MAZE2D {
 	PLAYER*					player;
 	CELL					goal;
 	PORTAL*					portal[2];
+	TRAP*					traps[MAZE_TRAP_NUM];
 
 	MAZE(int width, int height, UINT seed);
 	~MAZE();
@@ -52,7 +53,9 @@ struct MAZE : public MAZE2D {
 	BYTE					GetPositionCell(D3DXVECTOR3 pos);
 	BYTE					GetPositionCell(D3DXVECTOR3 pos, int &x, int& y);
 	D3DXVECTOR3				GetCellPosition(int x, int y);
+	BOOL					HasTrap(int x, int y, TRAP* &pOut);
 	void					SetGoal(int x, int y);
+	void					SetTraps();
 	void					SetItems(PLAYER* player);
 	BOOL					IsAtExit(PLAYER* player);
 

@@ -40,6 +40,7 @@
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="star.cpp" />
     <ClCompile Include="title.cpp" />
+    <ClCompile Include="trap.cpp" />
     <ClCompile Include="ui_digits.cpp" />
     <ClCompile Include="ui_game.cpp" />
     <ClCompile Include="ui_title.cpp" />
@@ -68,6 +69,7 @@
     <ClInclude Include="stage.h" />
     <ClInclude Include="star.h" />
     <ClInclude Include="title.h" />
+    <ClInclude Include="trap.h" />
     <ClInclude Include="ui_digits.h" />
     <ClInclude Include="ui_game.h" />
     <ClInclude Include="ui_title.h" />
