@@ -28,7 +28,6 @@
     <ClCompile Include="item.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="maths.cpp" />
     <ClCompile Include="maze.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="node.cpp" />
@@ -57,7 +56,6 @@
     <ClInclude Include="item.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="maths.h" />
     <ClInclude Include="maze.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="node.h" />

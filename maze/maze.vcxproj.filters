@@ -45,9 +45,6 @@
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="maths.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="model.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -117,9 +114,6 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="maths.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="model.h">
