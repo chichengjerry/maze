@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="d3d.cpp" />
-    <ClCompile Include="easing.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
@@ -29,7 +28,12 @@
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="maze.cpp" />
-    <ClCompile Include="model.cpp" />
+    <ClCompile Include="model.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="node.cpp" />
     <ClCompile Include="particle.cpp" />
     <ClCompile Include="player.cpp" />
@@ -48,7 +52,6 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="d3d.h" />
-    <ClInclude Include="easing.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gamemain.h" />
     <ClInclude Include="image.h" />
@@ -57,7 +60,12 @@
     <ClInclude Include="light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="maze.h" />
-    <ClInclude Include="model.h" />
+    <ClInclude Include="model.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="node.h" />
     <ClInclude Include="particle.h" />
     <ClInclude Include="player.h" />

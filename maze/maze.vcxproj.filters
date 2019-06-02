@@ -33,9 +33,6 @@
     <ClCompile Include="d3d.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="easing.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="image.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -94,7 +91,7 @@
       <Filter>ソース ファイル\game</Filter>
     </ClCompile>
     <ClCompile Include="trap.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,9 +99,6 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="d3d.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="easing.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="image.h">
