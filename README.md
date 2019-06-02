@@ -32,6 +32,11 @@ BE CAUTION: Jump over the trap (black hole) or you'll fall and die (game over).
 | Jump ジャンプ | `Space` | `RT` |
 | Restore スタミナ回復 | `E` | `LB` |
 
+## Build 必要なもの
+- Microsoft Visual Studio
+- Microsoft DirectX SDK (JUNE 2010)
+- Microsoft SDK 10.0.17134.0
+
 ## Team Member
 - Keita Gondou
 - Qiancheng Ma

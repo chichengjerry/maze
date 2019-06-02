@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="d3d.cpp" />
-    <ClCompile Include="easing.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
@@ -48,7 +47,6 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="d3d.h" />
-    <ClInclude Include="easing.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gamemain.h" />
     <ClInclude Include="image.h" />
@@ -72,6 +70,9 @@
     <ClInclude Include="ui_game.h" />
     <ClInclude Include="ui_title.h" />
     <ClInclude Include="util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
